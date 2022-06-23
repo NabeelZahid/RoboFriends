@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CardList from "./CardList";
 import SearchBox from './SearchBox';
 import Scroll from './Scroll';
+import ErrorBoundary from "./ErrorBoundary";
 // import { robots } from './robots'; //desutructed as export can have multiple variables / arrays, so not default which returns 1
 
 // PROPS never change, just passed down 1 way data flow. STATE is an object which describes the application, which can change able to pass data up to parent
@@ -63,7 +64,9 @@ class App2 extends Component { //To use state, change to class with a render()
                     {/* <CardList robots2={robots} /> */}
                     {/* <CardList robots2={this.state.robots2} /> { /* Now robots array can be accessed from state. Now the robots2 from state is passed down as props into CardList */}
                     <Scroll> { /* CHILDREN - Scroll component to allow search box to be usable when you scroll down page, wrapping another component  */}
-                        <CardList robots2={filteredRobots} /> { /* Can now pass filteredRobots array which will display them */}
+                        <ErrorBoundary>
+                            <CardList robots2={filteredRobots} /> { /* Can now pass filteredRobots array which will display them */}
+                        </ErrorBoundary>
                     </Scroll>
                 </div>
             );
